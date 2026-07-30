@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Chamunda Tours & Travels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { height: 40vh; min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; padding-top: var(--nav-h); overflow: hidden; background: #0f172a; }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; text-align: center; position: relative; z-index: 2; margin-top: 20px; }
+        .careers-content { padding: 80px 0; background: var(--bg-color); }
+        .job-card { background: var(--surface-color); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; border: 1px solid transparent; }
+        .job-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .job-info h3 { font-family: var(--font-secondary); font-size: 1.5rem; color: var(--text-dark); margin-bottom: 10px; }
+        .job-meta { display: flex; gap: 15px; color: var(--text-light); font-size: 0.9rem; }
+        .job-meta span { display: flex; align-items: center; gap: 5px; }
+        .job-action .btn { padding: 10px 25px; }
+        
+        [data-theme="dark"] .job-card { background: var(--glass-bg); box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-color: var(--glass-border); }
+        [data-theme="dark"] .job-info h3 { color: #fff; }
+        [data-theme="dark"] .job-meta { color: #aaa; }
+        
+        @media (max-width: 768px) {
+            .job-card { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .job-action { width: 100%; }
+            .job-action .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container"><div class="scroll-progress" id="scroll-progress"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li class="dropdown-trigger">
+                        <a href="experiences.html" class="nav-link">Experiences <i class="fa-solid fa-chevron-down text-sm"></i></a>
+                        <ul class="dropdown-menu glassmorphism">
+                            <li><a href="experiences.html#honeymoon">Honeymoon</a></li>
+                            <li><a href="experiences.html#adventure">Adventure</a></li>
+                            <li><a href="experiences.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle ripple" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <h1 class="page-title reveal fade-up">Join Our Elite Team</h1>
+    </section>
+
+    <!-- Careers Content -->
+    <section class="careers-content section">
+        <div class="container">
+            <div class="section-header text-center reveal fade-up">
+                <h2 class="section-title">Open Positions</h2>
+                <p class="section-subtitle">Are you passionate about luxury travel and unparalleled client service? We are always looking for exceptional talent.</p>
+            </div>
+            
+            <div class="jobs-list">
+                <div class="job-card reveal fade-up">
+                    <div class="job-info">
+                        <h3>Luxury Travel Concierge</h3>
+                        <div class="job-meta">
+                            <span><i class="fa-solid fa-location-dot"></i> Global (Remote)</span>
+                            <span><i class="fa-solid fa-briefcase"></i> Full-Time</span>
+                        </div>
+                    </div>
+                    <div class="job-action">
+                        <a href="mailto:careers@chamundatours.com?subject=Application%20for%20Luxury%20Travel%20Concierge" class="btn btn-outline ripple">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card reveal fade-up" style="animation-delay: 0.1s;">
+                    <div class="job-info">
+                        <h3>Director of VIP Experiences</h3>
+                        <div class="job-meta">
+                            <span><i class="fa-solid fa-location-dot"></i> London, UK</span>
+                            <span><i class="fa-solid fa-briefcase"></i> Full-Time</span>
+                        </div>
+                    </div>
+                    <div class="job-action">
+                        <a href="mailto:careers@chamundatours.com?subject=Application%20for%20Director%20of%20VIP%20Experiences" class="btn btn-outline ripple">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="job-card reveal fade-up" style="animation-delay: 0.2s;">
+                    <div class="job-info">
+                        <h3>Private Jet Charter Specialist</h3>
+                        <div class="job-meta">
+                            <span><i class="fa-solid fa-location-dot"></i> Dubai, UAE</span>
+                            <span><i class="fa-solid fa-briefcase"></i> Full-Time</span>
+                        </div>
+                    </div>
+                    <div class="job-action">
+                        <a href="mailto:careers@chamundatours.com?subject=Application%20for%20Private%20Jet%20Charter%20Specialist" class="btn btn-outline ripple">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand col-span-2">
+                        <a href="index.html" class="logo mb-4 inline-block">
+                            <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+                        </a>
+                        <p class="text-gray-400 max-w-sm mb-6">Elevating travel to an art form. We curate exceptional, high-end travel experiences for discerning global citizens.</p>
+                        <div class="social-links-footer">
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Travel Blog</a></li>
+                            <li><a href="press-media.html">Press & Media</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Destinations</h4>
+                        <ul>
+                            <li><a href="europe-tours.html">Europe Tours</a></li>
+                            <li><a href="asia-escapes.html">Asia Escapes</a></li>
+                            <li><a href="indian-heritage.html">Indian Heritage</a></li>
+                            <li><a href="island-retreats.html">Island Retreats</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter col-span-2">
+                        <h4 class="footer-title">The Luxury Edit</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to our newsletter for exclusive travel insights and secret VIP deals.</p>
+                        <form class="newsletter-form glassmorphism" id="newsletter">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="ripple"><i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        <div class="app-links mt-6">
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-apple text-2xl"></i> <div><small>Download on</small><br>App Store</div></a>
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-google-play text-2xl"></i> <div><small>Get it on</small><br>Google Play</div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 Chamunda Tours & Travels. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle ripple" id="chat-toggle"><i class="fa-solid fa-comment-dots"></i></button>
+        <div class="chat-window glassmorphism-heavy" id="chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="chat-avatar"><i class="fa-solid fa-user-tie"></i><div class="online-dot"></div></div>
+                    <div><h4 class="m-0 text-sm">Concierge Team</h4></div>
+                </div>
+                <button class="chat-close" id="chat-close"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg-bubble bot">Hello! Ready to plan your dream vacation? Let me know how I can assist you today.</div>
+            </div>
+            <div class="chat-footer">
+                <div class="typing-indicator" id="chat-typing"><span></span><span></span><span></span></div>
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+

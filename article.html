@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blog | Chamunda Tours & Travels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { height: 50vh; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; padding-top: var(--nav-h); overflow: hidden; }
+        .page-hero-bg { position: absolute; inset: 0; z-index: -1; }
+        .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-overlay { position: absolute; inset: 0; background: rgba(7, 17, 32, 0.7); }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; text-align: center; position: relative; z-index: 2; margin-top: 40px; }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container"><div class="scroll-progress" id="scroll-progress"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li class="dropdown-trigger">
+                        <a href="experiences.html" class="nav-link">Experiences <i class="fa-solid fa-chevron-down text-sm"></i></a>
+                        <ul class="dropdown-menu glassmorphism">
+                            <li><a href="experiences.html#honeymoon">Honeymoon</a></li>
+                            <li><a href="experiences.html#adventure">Adventure</a></li>
+                            <li><a href="experiences.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle ripple" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <!-- Article Hero -->
+    <header class="article-hero reveal fade-up" style="position: relative; height: 60vh; min-height: 400px; display: flex; align-items: flex-end; padding-bottom: 50px;">
+        <div style="position: absolute; inset: 0; z-index: -1;">
+            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Paris" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);"></div>
+        </div>
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; color: white;">
+                <span class="badge" style="background: var(--clr-luxury-gold); color: var(--clr-dark); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-bottom: 20px; display: inline-block;">Tips & Guides</span>
+                <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-head); margin-bottom: 20px; line-height: 1.1;">How to Pack for a Luxury European Tour</h1>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; color: rgba(255,255,255,0.8); font-size: 1rem;">
+                    <span><i class="fa-regular fa-calendar-alt mr-2"></i> May 28, 2026</span>
+                    <span><i class="fa-regular fa-user mr-2"></i> Isabella Rossi</span>
+                    <span><i class="fa-regular fa-clock mr-2"></i> 5 min read</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content" style="padding: 80px 0; background: var(--bg-color);">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            
+            <div class="article-body reveal fade-up" style="font-size: 1.15rem; line-height: 1.8; color: var(--text-color);">
+                <p style="margin-bottom: 25px; font-size: 1.3rem; font-weight: 500; color: var(--text-dark);">Embarking on a grand tour of Europe requires more than just a passport and an itinerary; it requires a carefully curated wardrobe that transitions effortlessly from exploring cobblestone streets in Rome to Michelin-starred dining in Paris.</p>
+                
+                <h3 style="font-family: var(--font-head); font-size: 1.8rem; margin: 40px 0 20px; color: var(--text-dark);">1. The Art of the Capsule Wardrobe</h3>
+                <p style="margin-bottom: 25px;">When flying first class or traversing the continent via luxury rail, baggage constraints might be relaxed, but overpacking remains a faux pas. A capsule wardrobe focuses on high-quality, versatile pieces. Think tailored linen trousers, silk blouses, and a timeless cashmere wrap that can serve as an elegant evening shawl or a cozy blanket during transit.</p>
+
+                <img src="https://images.unsplash.com/photo-1553531384-cc64ac80f931?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Luxury luggage" style="width: 100%; border-radius: 15px; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+
+                <h3 style="font-family: var(--font-head); font-size: 1.8rem; margin: 40px 0 20px; color: var(--text-dark);">2. Footwear for Every Occasion</h3>
+                <p style="margin-bottom: 25px;">European cities are best explored on foot. Leave the stilettos at home unless you have a specific gala to attend. Instead, opt for designer flats, stylish yet supportive walking sneakers, and a pair of elegant wedges or block heels for dinner reservations.</p>
+
+                <blockquote style="border-left: 4px solid var(--clr-luxury-gold); padding: 20px; margin: 40px 0; background: rgba(212, 175, 55, 0.05); font-style: italic; font-size: 1.2rem; color: var(--text-dark);">
+                    "The key to luxury travel isn't carrying everything you own, but rather carrying exactly what you need to feel impeccable in any setting."
+                </blockquote>
+
+                <h3 style="font-family: var(--font-head); font-size: 1.8rem; margin: 40px 0 20px; color: var(--text-dark);">3. Tech & Travel Essentials</h3>
+                <p style="margin-bottom: 25px;">Beyond clothing, your carry-on should house noise-canceling headphones, a universal luxury power adapter, and premium skincare to combat flight dehydration. A leather travel wallet organizing your documents adds a final touch of sophistication to your journey.</p>
+            </div>
+
+            <div class="article-share" style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; color: var(--text-dark);">Share this article:</span>
+                <div style="display: flex; gap: 15px;">
+                    <a href="#" style="width: 40px; height: 40px; border-radius: 50%; background: var(--surface-color); display: flex; justify-content: center; align-items: center; color: var(--text-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" style="width: 40px; height: 40px; border-radius: 50%; background: var(--surface-color); display: flex; justify-content: center; align-items: center; color: var(--text-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" style="width: 40px; height: 40px; border-radius: 50%; background: var(--surface-color); display: flex; justify-content: center; align-items: center; color: var(--text-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Instagram Feed Section -->
+    <section class="instagram-feed section bg-alt">
+        <div class="container-fluid">
+            <div class="section-header text-center reveal fade-up">
+                <h2 class="section-title">Follow Our Journey</h2>
+                <p class="section-subtitle">@ChamundaTours</p>
+            </div>
+            <div class="insta-grid">
+                <a href="#" class="insta-item reveal zoom-in"><img src="assets/images/bali.png" alt="Insta 1" loading="lazy"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+                <a href="#" class="insta-item reveal zoom-in" style="animation-delay: 0.1s"><img src="assets/images/goa.png" alt="Insta 2" loading="lazy"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+                <a href="#" class="insta-item reveal zoom-in" style="animation-delay: 0.2s"><img src="assets/images/manali.png" alt="Insta 3" loading="lazy"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+                <a href="#" class="insta-item reveal zoom-in" style="animation-delay: 0.3s"><img src="assets/images/singapore.png" alt="Insta 4" loading="lazy"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+                <a href="#" class="insta-item reveal zoom-in" style="animation-delay: 0.4s"><img src="assets/images/thailand.png" alt="Insta 5" loading="lazy"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand col-span-2">
+                        <a href="index.html" class="logo mb-4 inline-block">
+                            <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+                        </a>
+                        <p class="text-gray-400 max-w-sm mb-6">Elevating travel to an art form. We curate exceptional, high-end travel experiences for discerning global citizens.</p>
+                        <div class="social-links-footer">
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Travel Blog</a></li>
+                            <li><a href="press-media.html">Press & Media</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Destinations</h4>
+                        <ul>
+                            <li><a href="europe-tours.html">Europe Tours</a></li>
+                            <li><a href="asia-escapes.html">Asia Escapes</a></li>
+                            <li><a href="indian-heritage.html">Indian Heritage</a></li>
+                            <li><a href="island-retreats.html">Island Retreats</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter col-span-2">
+                        <h4 class="footer-title">The Luxury Edit</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to our newsletter for exclusive travel insights and secret VIP deals.</p>
+                        <form class="newsletter-form glassmorphism" id="newsletter">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="ripple"><i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        <div class="app-links mt-6">
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-apple text-2xl"></i> <div><small>Download on</small><br>App Store</div></a>
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-google-play text-2xl"></i> <div><small>Get it on</small><br>Google Play</div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 Chamunda Tours & Travels. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle ripple" id="chat-toggle"><i class="fa-solid fa-comment-dots"></i></button>
+        <div class="chat-window glassmorphism-heavy" id="chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="chat-avatar"><i class="fa-solid fa-user-tie"></i><div class="online-dot"></div></div>
+                    <div><h4 class="m-0 text-sm">Concierge Team</h4></div>
+                </div>
+                <button class="chat-close" id="chat-close"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg-bubble bot">Hello! Ready to plan your dream vacation? Let me know how I can assist you today.</div>
+            </div>
+            <div class="chat-footer">
+                <div class="typing-indicator" id="chat-typing"><span></span><span></span><span></span></div>
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+

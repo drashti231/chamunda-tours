@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Exclusive Offer | Chamunda Tours & Travels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { height: 40vh; min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; padding-top: var(--nav-h); overflow: hidden; background: #0f172a; }
+        .page-hero-bg { position: absolute; inset: 0; z-index: -1; }
+        .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-overlay { position: absolute; inset: 0; background: rgba(7, 17, 32, 0.6); }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; text-align: center; position: relative; z-index: 2; margin-top: 20px; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .booking-section { padding: 80px 0; background: var(--bg-color); }
+        .booking-container { max-width: 800px; margin: 0 auto; background: var(--surface-color); padding: 50px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        
+        .deal-summary { text-align: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .hero-features { display: flex; gap: 30px; margin-top: 40px; justify-content: center; }
+        .feature-item { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 1.1rem; }
+        .feature-item i { color: #10b981; font-size: 1.5rem; }
+        
+        /* Add-ons Modal Styles */
+        .addons-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .addons-modal-overlay.active { opacity: 1; pointer-events: all; }
+        .addons-modal { background: var(--surface-color); width: 90%; max-width: 650px; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.2); transform: translateY(30px); transition: transform 0.4s ease; border: 1px solid rgba(255,255,255,0.1); }
+        .addons-modal-overlay.active .addons-modal { transform: translateY(0); }
+        .addons-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0; }
+        .addon-card { position: relative; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1); border-radius: 15px; padding: 25px 15px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: var(--text-dark); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .addon-card:hover { transform: translateY(-5px); background: var(--clr-glass); border-color: #10b981; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .addon-card i { font-size: 2.5rem; color: #10b981; }
+        .addon-card span { font-weight: 600; font-size: 1.1rem; margin-top: 10px; }
+        .addon-card.selected { background: rgba(16, 185, 129, 0.1); border-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
+        .addon-card.selected::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 15px; right: 15px; color: #10b981; font-size: 1.2rem; }
+        
+        [data-theme="dark"] .addons-modal { background: var(--glass-bg); border-color: var(--glass-border); }
+        [data-theme="dark"] .addon-card { background: rgba(255,255,255,0.02); color: #fff; border-color: rgba(255,255,255,0.1); }
+        [data-theme="dark"] .addon-card:hover { background: rgba(255,255,255,0.05); border-color: #10b981; }
+        [data-theme="dark"] .addon-card.selected { background: rgba(16, 185, 129, 0.2); }
+
+        @media (max-width: 768px) {
+            .hero-features { flex-direction: column; align-items: center; gap: 15px; }
+            .addons-options { grid-template-columns: 1fr; }
+        }
+        
+        .deal-summary h3 { font-size: 2rem; margin-bottom: 10px; font-family: var(--font-head); }
+        .deal-pricing { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 15px; font-size: 1.5rem; font-weight: 700; }
+        .deal-old { text-decoration: line-through; color: var(--text-muted); opacity: 0.6; }
+        .deal-new { color: #10b981; font-size: 2rem; }
+        [data-theme="dark"] .deal-summary { border-bottom-color: rgba(255,255,255,0.1); }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-family: var(--font-secondary); }
+        .form-group input, .form-group select, .form-group textarea { 
+            padding: 15px; 
+            border: 1px solid rgba(0,0,0,0.1); 
+            border-radius: 10px; 
+            font-family: var(--font-primary); 
+            background: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        
+        .submit-btn-wrapper { text-align: center; margin-top: 40px; }
+        .submit-btn-wrapper .btn { font-size: 1.2rem; padding: 18px 50px; width: 100%; max-width: 350px; background: #10b981; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
+        .submit-btn-wrapper .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5); }
+        
+        [data-theme="dark"] .booking-container { background: var(--glass-bg); box-shadow: 0 15px 40px rgba(0,0,0,0.3); border: 1px solid var(--glass-border); }
+        [data-theme="dark"] .form-group label { color: #fff; }
+        [data-theme="dark"] .form-group input, [data-theme="dark"] .form-group select, [data-theme="dark"] .form-group textarea { background: rgba(0,0,0,0.2); color: #fff; border-color: rgba(255,255,255,0.1); }
+        
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; gap: 15px; }
+            .booking-container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container"><div class="scroll-progress" id="scroll-progress"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li class="dropdown-trigger">
+                        <a href="experiences.html" class="nav-link">Experiences <i class="fa-solid fa-chevron-down text-sm"></i></a>
+                        <ul class="dropdown-menu glassmorphism">
+                            <li><a href="experiences.html#honeymoon">Honeymoon</a></li>
+                            <li><a href="experiences.html#adventure">Adventure</a></li>
+                            <li><a href="experiences.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle ripple" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="assets/images/goa.png" alt="Goa Offer">
+            <div class="page-hero-overlay"></div>
+        </div>
+        <h1 class="page-title reveal fade-up">Lock In Your Deal</h1>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section section">
+        <div class="container">
+            
+            <div class="booking-container reveal fade-up">
+                
+                <div class="deal-summary">
+                    <span style="display:inline-block; padding: 5px 15px; background: rgba(212,175,55,0.1); color: var(--clr-luxury-gold); border-radius: 20px; font-weight:600; margin-bottom: 15px; font-size: 0.9rem;">LIMITED TIME FLASH SALE</span>
+                    <h3>Goa Ultra-Luxury Beach Resort</h3>
+                    <div class="deal-pricing">
+                        <span class="deal-old">₹45,000</span>
+                        <span class="deal-new">₹29,999</span>
+                    </div>
+                </div>
+
+                <form action="#" method="POST" id="vip-offer-form">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" required placeholder="John">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" required placeholder="Doe">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Contact Email</label>
+                            <input type="email" id="email" required placeholder="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required placeholder="+1 (555) 000-0000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="travel-date">Preferred Travel Date</label>
+                            <input type="date" id="travel-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests">
+                                <option value="1">1 Person</option>
+                                <option value="2" selected>2 People</option>
+                                <option value="3-4">3 - 4 People</option>
+                                <option value="5+">5+ People</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="submit-btn-wrapper">
+                        <button type="submit" class="btn ripple" style="background: #10b981; color: white; border: none; font-weight: 600;">Claim Offer Now <i class="fa-solid fa-check ml-2"></i></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Add-ons Modal -->
+    <div class="addons-modal-overlay" id="addons-modal">
+        <div class="addons-modal glassmorphism-heavy">
+            <h2 style="font-size: 2.2rem; margin-bottom: 10px; color: #10b981;">Offer Locked!</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Your exclusive discount is secured. Would you like to elevate your package by adding premium transportation before paying?</p>
+            
+            <div class="addons-options">
+                <button type="button" class="addon-card" onclick="this.classList.toggle('selected'); updateCheckoutTotal();">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <span>Add Flights</span>
+                </button>
+                <button type="button" class="addon-card" onclick="this.classList.toggle('selected'); updateCheckoutTotal();">
+                    <i class="fa-solid fa-ship"></i>
+                    <span>Add Cruise</span>
+                </button>
+                <button type="button" class="addon-card" onclick="this.classList.toggle('selected'); updateCheckoutTotal();">
+                    <i class="fa-solid fa-train"></i>
+                    <span>Add Rail</span>
+                </button>
+            </div>
+            
+            <button type="button" class="btn ripple" style="background: #10b981; color: white; border: none; font-size: 1.1rem; width: 100%; margin-top: 15px;" onclick="document.getElementById('addons-modal').classList.remove('active'); document.getElementById('package-checkout-modal').classList.add('active');">Proceed to Payment <i class="fa-solid fa-arrow-right ml-2"></i></button>
+        </div>
+    </div>
+    <div class="addons-modal-overlay" id="package-checkout-modal">
+        <div class="addons-modal glassmorphism-heavy" style="max-width: 600px; padding: 40px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="font-size: 1.8rem; color: #10b981;"><i class="fa-solid fa-gift mr-2"></i> Secure Your Offer</h2>
+                <button type="button" class="btn btn-outline" style="padding: 5px 15px;" onclick="document.getElementById('package-checkout-modal').classList.remove('active'); document.body.style.overflow = '';"><i class="fa-solid fa-times"></i></button>
+            </div>
+            
+            <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 15px; margin-bottom: 30px; border-radius: 4px;">
+                <h4 id="checkout-deal-title" style="color: #10b981; margin-bottom: 5px; font-size: 1.1rem;"><i class="fa-solid fa-bolt"></i> Exclusive Deal Locked</h4>
+                <p id="checkout-deal-desc" style="font-size: 0.9rem; margin: 0;">Complete your payment now to instantly confirm your VIP package at the exclusive discounted rate!</p>
+                <div id="checkout-total-price" style="margin-top: 15px; font-weight: 700; font-size: 1.4rem; color: #10b981;">Total: ₹29,999</div>
+            </div>
+            
+            <form action="booking-confirmed.html" id="offer-payment-form" style="text-align: left;">
+                
+                <h4 style="margin-bottom: 20px; color: var(--clr-text-main); font-size: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;"><i class="fa-solid fa-credit-card mr-2"></i> Payment Details</h4>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Name on Card</label>
+                    <input type="text" required placeholder="John Doe">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>Card Number</label>
+                    <input type="text" required placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" required placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="password" required placeholder="123">
+                    </div>
+                </div>
+
+                <div class="submit-btn-wrapper" style="margin-top: 30px;">
+                    <button type="submit" class="btn ripple" style="width: 100%; font-size: 1.1rem; background: #10b981; color: white; border: none;">Confirm & Claim Offer <i class="fa-solid fa-lock ml-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand col-span-2">
+                        <a href="index.html" class="logo mb-4 inline-block">
+                            <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+                        </a>
+                        <p class="text-gray-400 max-w-sm mb-6">Elevating travel to an art form. We curate exceptional, high-end travel experiences for discerning global citizens.</p>
+                        <div class="social-links-footer">
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Travel Blog</a></li>
+                            <li><a href="press-media.html">Press & Media</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Destinations</h4>
+                        <ul>
+                            <li><a href="europe-tours.html">Europe Tours</a></li>
+                            <li><a href="asia-escapes.html">Asia Escapes</a></li>
+                            <li><a href="indian-heritage.html">Indian Heritage</a></li>
+                            <li><a href="island-retreats.html">Island Retreats</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter col-span-2">
+                        <h4 class="footer-title">The Luxury Edit</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to our newsletter for exclusive travel insights and secret VIP deals.</p>
+                        <form class="newsletter-form glassmorphism" id="newsletter">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="ripple"><i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        <div class="app-links mt-6">
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-apple text-2xl"></i> <div><small>Download on</small><br>App Store</div></a>
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-google-play text-2xl"></i> <div><small>Get it on</small><br>Google Play</div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 Chamunda Tours & Travels. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle ripple" id="chat-toggle"><i class="fa-solid fa-comment-dots"></i></button>
+        <div class="chat-window glassmorphism-heavy" id="chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="chat-avatar"><i class="fa-solid fa-user-tie"></i><div class="online-dot"></div></div>
+                    <div><h4 class="m-0 text-sm">Concierge Team</h4></div>
+                </div>
+                <button class="chat-close" id="chat-close"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg-bubble bot">Hello! Ready to plan your dream vacation? Let me know how I can assist you today.</div>
+            </div>
+            <div class="chat-footer">
+                <div class="typing-indicator" id="chat-typing"><span></span><span></span><span></span></div>
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('vip-offer-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = 'Securing Deal... <i class="fa-solid fa-spinner fa-spin ml-2"></i>';
+            btn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                // Reset submit button
+                btn.innerHTML = 'Claim Offer Now <i class="fa-solid fa-check ml-2"></i>';
+                btn.classList.remove('opacity-80');
+                
+                // Show Add-ons modal instead of direct payment
+                document.getElementById('addons-modal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, 1000);
+        });
+
+        function updateCheckoutTotal() {
+            const selected = document.querySelectorAll('.addon-card.selected');
+            const titleEl = document.getElementById('checkout-deal-title');
+            const descEl = document.getElementById('checkout-deal-desc');
+            const priceEl = document.getElementById('checkout-total-price');
+            
+            let basePrice = 29999;
+            let addons = [];
+            
+            selected.forEach(card => {
+                const type = card.querySelector('span').innerText;
+                if(type.includes('Flights')) { addons.push('Premium Flights'); basePrice += 15000; }
+                if(type.includes('Cruise')) { addons.push('Luxury Cruise'); basePrice += 25000; }
+                if(type.includes('Rail')) { addons.push('First-Class Rail'); basePrice += 8000; }
+            });
+            
+            if(addons.length > 0) {
+                titleEl.innerHTML = '<i class="fa-solid fa-bolt"></i> Deal + ' + addons.join(' & ');
+                descEl.innerText = "Complete your payment to confirm your upgraded VIP package at an exclusive bundled discount!";
+                priceEl.innerText = 'Total: ₹' + basePrice.toLocaleString();
+            } else {
+                titleEl.innerHTML = '<i class="fa-solid fa-bolt"></i> Exclusive Deal Locked';
+                descEl.innerText = "Complete your payment now to instantly confirm your VIP package at the exclusive discounted rate!";
+                priceEl.innerText = 'Total: ₹29,999';
+            }
+        }
+
+        // Handle Package Payment Form Submit
+        document.getElementById('offer-payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = 'Processing Payment... <i class="fa-solid fa-circle-notch fa-spin ml-2"></i>';
+            btn.classList.add('opacity-80');
+            btn.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                window.location.href = 'booking-confirmed.html';
+            }, 1800);
+        });
+    </script>
+</body>
+</html>
+

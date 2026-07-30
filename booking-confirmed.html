@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | Chamunda Tours & Travels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .success-section { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px; background: var(--bg-color); text-align: center; }
+        .success-card { background: var(--surface-color); padding: 60px 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); max-width: 600px; width: 100%; animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        
+        .success-icon-wrapper { width: 100px; height: 100px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; position: relative; }
+        .success-icon-wrapper i { font-size: 3rem; color: var(--primary-color); }
+        .success-icon-wrapper::after { content: ''; position: absolute; inset: -10px; border: 2px solid var(--primary-color); border-radius: 50%; opacity: 0.3; animation: pulseRing 2s infinite; }
+        
+        .success-card h1 { font-family: var(--font-secondary); font-size: 2.5rem; color: var(--text-dark); margin-bottom: 15px; }
+        .success-card p { color: var(--text-light); font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; }
+        
+        [data-theme="dark"] .success-card { background: var(--glass-bg); border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        [data-theme="dark"] .success-card h1 { color: #fff; }
+        [data-theme="dark"] .success-icon-wrapper { background: rgba(212, 175, 55, 0.15); }
+        
+        @keyframes popIn {
+            0% { transform: scale(0.8) translateY(30px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes pulseRing {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar" style="background: var(--nav-bg); backdrop-filter: blur(10px);">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li class="dropdown-trigger">
+                        <a href="experiences.html" class="nav-link">Experiences <i class="fa-solid fa-chevron-down text-sm"></i></a>
+                        <ul class="dropdown-menu glassmorphism">
+                            <li><a href="experiences.html#honeymoon">Honeymoon</a></li>
+                            <li><a href="experiences.html#adventure">Adventure</a></li>
+                            <li><a href="experiences.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle ripple" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <!-- Success Section -->
+    <section class="success-section">
+        <div class="container">
+            <div class="success-card">
+                <div class="success-icon-wrapper" style="background: rgba(34, 197, 94, 0.1);">
+                    <i class="fa-solid fa-circle-check" style="color: #22c55e;"></i>
+                </div>
+                <h1>Payment Successful!</h1>
+                <p>Thank you for choosing Chamunda Tours & Travels. Your flight and luxury add-ons have been successfully booked and confirmed.</p>
+                <p>Your E-Tickets and official itinerary have been sent to your email. Get ready for an unforgettable journey!</p>
+                <div style="margin-top: 30px;">
+                    <a href="index.html" class="btn btn-outline ripple">Return to Home</a>
+                    <a href="destinations.html" class="btn btn-primary ripple" style="margin-left: 10px;">Explore Destinations</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand col-span-2">
+                        <a href="index.html" class="logo mb-4 inline-block">
+                            <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+                        </a>
+                        <p class="text-gray-400 max-w-sm mb-6">Elevating travel to an art form. We curate exceptional, high-end travel experiences for discerning global citizens.</p>
+                        <div class="social-links-footer">
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Travel Blog</a></li>
+                            <li><a href="press-media.html">Press & Media</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Destinations</h4>
+                        <ul>
+                            <li><a href="europe-tours.html">Europe Tours</a></li>
+                            <li><a href="asia-escapes.html">Asia Escapes</a></li>
+                            <li><a href="indian-heritage.html">Indian Heritage</a></li>
+                            <li><a href="island-retreats.html">Island Retreats</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter col-span-2">
+                        <h4 class="footer-title">The Luxury Edit</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to our newsletter for exclusive travel insights and secret VIP deals.</p>
+                        <form class="newsletter-form glassmorphism" id="newsletter">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="ripple"><i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        <div class="app-links mt-6">
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-apple text-2xl"></i> <div><small>Download on</small><br>App Store</div></a>
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-google-play text-2xl"></i> <div><small>Get it on</small><br>Google Play</div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 Chamunda Tours & Travels. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle ripple" id="chat-toggle"><i class="fa-solid fa-comment-dots"></i></button>
+        <div class="chat-window glassmorphism-heavy" id="chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="chat-avatar"><i class="fa-solid fa-user-tie"></i><div class="online-dot"></div></div>
+                    <div><h4 class="m-0 text-sm">Concierge Team</h4></div>
+                </div>
+                <button class="chat-close" id="chat-close"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg-bubble bot">Hello! Ready to plan your dream vacation? Let me know how I can assist you today.</div>
+            </div>
+            <div class="chat-footer">
+                <div class="typing-indicator" id="chat-typing"><span></span><span></span><span></span></div>
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+

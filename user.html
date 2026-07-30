@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | Chamunda Tours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        .user-layout { display: flex; min-height: 100vh; }
+        
+        /* Sidebar */
+        .sidebar { width: 280px; background: #1e293b; border-right: 1px solid #334155; padding: 30px; display: flex; flex-direction: column; }
+        .sidebar-brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 50px; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .sidebar-brand i { color: var(--clr-luxury-gold); }
+        
+        .user-profile { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #334155; }
+        .user-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--grad-gold); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; }
+        .user-name { font-weight: 600; font-size: 1.1rem; margin-bottom: 5px; }
+        .user-type { font-size: 0.85rem; color: var(--clr-luxury-gold); text-transform: uppercase; letter-spacing: 1px; }
+
+        .sidebar-nav { display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-link { display: flex; align-items: center; gap: 15px; color: #94a3b8; text-decoration: none; padding: 12px 20px; border-radius: 10px; transition: all 0.3s; font-weight: 500; }
+        .sidebar-link:hover, .sidebar-link.active { background: rgba(212, 175, 55, 0.1); color: var(--clr-luxury-gold); }
+        
+        /* Main Content */
+        .user-main { flex: 1; padding: 40px; overflow-y: auto; }
+        .user-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .user-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 0; }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 15px; padding: 25px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .stat-info h3 { margin: 0 0 5px 0; font-size: 0.9rem; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-info p { margin: 0; font-size: 1.8rem; font-weight: 600; color: #fff; }
+        
+        /* Table / List */
+        .content-section { background: #1e293b; border: 1px solid #334155; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow-x: auto; margin-bottom: 40px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .section-header h2 { margin: 0; font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+        
+        .user-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        .user-table th { text-align: left; padding: 15px; border-bottom: 2px solid #334155; color: #94a3b8; font-weight: 500; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .user-table td { padding: 18px 15px; border-bottom: 1px solid #334155; color: #e2e8f0; font-size: 0.95rem; }
+        
+        .status-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        .status-pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .status-confirmed { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
+        
+        .empty-state { text-align: center; padding: 40px; color: #94a3b8; }
+        .empty-state i { font-size: 3rem; margin-bottom: 15px; opacity: 0.5; color: var(--clr-luxury-gold); }
+
+        /* Wishlist Grid */
+        .wishlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .wishlist-card { position: relative; border-radius: 12px; overflow: hidden; height: 150px; cursor: pointer; transition: transform 0.3s; }
+        .wishlist-card:hover { transform: scale(1.05); }
+        .wishlist-card img { width: 100%; height: 100%; object-fit: cover; }
+        .wishlist-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); display: flex; align-items: flex-end; padding: 15px; }
+        .wishlist-title { color: #fff; font-weight: 600; margin: 0; font-size: 1.1rem; }
+        .remove-wishlist { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.5); border: none; color: #ef4444; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .remove-wishlist:hover { background: #ef4444; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="user-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index.html" class="sidebar-brand">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            
+            <div class="user-profile">
+                <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="user-name">Luxury Client</div>
+                <div class="user-type">VIP Member</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="sidebar-link active" onclick="switchUserTab('dashboard', this)"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                <a href="#bookings" class="sidebar-link" onclick="switchUserTab('bookings', this)"><i class="fa-solid fa-suitcase-rolling"></i> My Trips</a>
+                <a href="#wallet" class="sidebar-link" onclick="switchUserTab('wallet', this)"><i class="fa-solid fa-wallet"></i> Travel Wallet</a>
+                <a href="#travellers" class="sidebar-link" onclick="switchUserTab('travellers', this)"><i class="fa-solid fa-users"></i> Saved Travellers</a>
+                <a href="#wishlist" class="sidebar-link" onclick="switchUserTab('wishlist', this)"><i class="fa-solid fa-heart"></i> Wishlist</a>
+                <a href="#support" class="sidebar-link" onclick="switchUserTab('support', this)"><i class="fa-solid fa-headset"></i> Support Tickets</a>
+                <a href="#settings" class="sidebar-link" onclick="switchUserTab('settings', this)"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            
+            <div style="margin-top: auto;">
+                <a href="index.html" class="sidebar-link" style="color: #64748b;"><i class="fa-solid fa-arrow-left"></i> Back to Website</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="user-main">
+            <div class="user-header">
+                <h1>Welcome Back</h1>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid" id="dashboard-section">
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: var(--clr-luxury-gold); background: rgba(212, 175, 55, 0.1);"><i class="fa-solid fa-ticket"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Bookings</h3>
+                        <p id="user-total">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i class="fa-solid fa-plane-arrival"></i></div>
+                    <div class="stat-info">
+                        <h3>Upcoming Trips</h3>
+                        <p id="user-upcoming">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.1);"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="stat-info">
+                        <h3>Chamunda Cash</h3>
+                        <p id="user-wallet-balance">$0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Trips Table -->
+            <div class="content-section tab-section" id="bookings-section">
+                <div class="section-header">
+                    <h2>My Inquiries & Bookings</h2>
+                </div>
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Date</th>
+                            <th>Destination / Request</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-bookings-tbody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Travel Wallet -->
+            <div class="content-section tab-section" id="wallet-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Chamunda Cash Wallet</h2>
+                </div>
+                <div style="background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 20px;">
+                    <i class="fa-solid fa-wallet" style="font-size: 3rem; color: var(--clr-luxury-gold); margin-bottom: 15px;"></i>
+                    <h3 style="font-size: 2.5rem; margin: 0; color: #fff;" id="wallet-display">$0</h3>
+                    <p style="color: #94a3b8; margin-top: 10px;">Available Balance. Use this at checkout for instant discounts.</p>
+                </div>
+                <table class="user-table">
+                    <thead><tr><th>Date</th><th>Description</th><th>Amount</th></tr></thead>
+                    <tbody id="wallet-history-tbody">
+                        <tr><td colspan="3" class="empty-state">No recent transactions.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Saved Travellers -->
+            <div class="content-section tab-section" id="travellers-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Saved Travellers</h2>
+                    <button class="btn btn-primary" onclick="addTraveller()" style="padding: 8px 15px; font-size: 0.9rem;">+ Add Traveller</button>
+                </div>
+                <table class="user-table">
+                    <thead><tr><th>Name</th><th>DOB</th><th>Passport No.</th><th>Action</th></tr></thead>
+                    <tbody id="travellers-tbody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Support Tickets -->
+            <div class="content-section tab-section" id="support-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Support & Help Center</h2>
+                    <button class="btn btn-outline" style="padding: 8px 15px; font-size: 0.9rem;" onclick="raiseTicket()">Raise a Ticket</button>
+                </div>
+                <table class="user-table">
+                    <thead><tr><th>Ticket ID</th><th>Issue</th><th>Date</th><th>Status</th></tr></thead>
+                    <tbody id="support-tbody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Wishlist -->
+            <div class="content-section tab-section" id="wishlist-section" style="display: none;">
+                <div class="section-header">
+                    <h2>My Wishlist</h2>
+                </div>
+                <div class="wishlist-grid" id="user-wishlist-grid">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Logic -->
+    <script src="user.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

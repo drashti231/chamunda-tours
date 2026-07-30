@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Chamunda Tours</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        .admin-layout { display: flex; min-height: 100vh; }
+        
+        /* Sidebar */
+        .sidebar { width: 280px; background: #1e293b; border-right: 1px solid #334155; padding: 30px; display: flex; flex-direction: column; }
+        .sidebar-brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 50px; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .sidebar-brand i { color: var(--clr-luxury-gold); }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 15px; }
+        .sidebar-link { display: flex; align-items: center; gap: 15px; color: #94a3b8; text-decoration: none; padding: 12px 20px; border-radius: 10px; transition: all 0.3s; font-weight: 500; }
+        .sidebar-link:hover, .sidebar-link.active { background: rgba(212, 175, 55, 0.1); color: var(--clr-luxury-gold); }
+        
+        /* Main Content */
+        .admin-main { flex: 1; padding: 40px; overflow-y: auto; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .admin-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 0; }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 15px; padding: 25px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .stat-icon { width: 60px; height: 60px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--clr-luxury-gold); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .stat-info h3 { margin: 0 0 5px 0; font-size: 0.9rem; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-info p { margin: 0; font-size: 1.8rem; font-weight: 600; color: #fff; }
+        
+        /* Table */
+        .table-container { background: #1e293b; border: 1px solid #334155; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow-x: auto; }
+        .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .table-header h2 { margin: 0; font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+        .admin-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        .admin-table th { text-align: left; padding: 15px; border-bottom: 2px solid #334155; color: #94a3b8; font-weight: 500; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .admin-table td { padding: 18px 15px; border-bottom: 1px solid #334155; color: #e2e8f0; font-size: 0.95rem; }
+        .admin-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+        
+        .status-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        .status-pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .status-confirmed { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
+        
+        .empty-state { text-align: center; padding: 50px; color: #94a3b8; }
+        .empty-state i { font-size: 3rem; margin-bottom: 15px; opacity: 0.5; }
+        
+        .clear-btn:hover { background: #ef4444; color: #fff; }
+        
+        /* Restore default cursor for admin panel */
+        * { cursor: auto !important; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index.html" class="sidebar-brand">
+                <i class="fa-solid fa-crown"></i> Admin
+            </a>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="sidebar-link active" onclick="switchAdminTab('dashboard', this)"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                <a href="#wallet" class="sidebar-link" onclick="switchAdminTab('wallet', this)"><i class="fa-solid fa-money-bill-transfer"></i> Wallet Manager</a>
+                <a href="#promos" class="sidebar-link" onclick="switchAdminTab('promos', this)"><i class="fa-solid fa-tags"></i> Promo Codes</a>
+                <a href="#support" class="sidebar-link" onclick="switchAdminTab('support', this)"><i class="fa-solid fa-headset"></i> Support Tickets</a>
+                <a href="#settings" class="sidebar-link" onclick="switchAdminTab('settings', this)"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div style="margin-top: auto;">
+                <a href="index.html" class="sidebar-link" style="color: #64748b;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Exit to Website</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1>Admin Control Panel</h1>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <div style="text-align: right; line-height: 1.2;">
+                        <span style="display: block; font-weight: 600;">Admin User</span>
+                        <span style="font-size: 0.8rem; color: #94a3b8;">Superadmin</span>
+                    </div>
+                    <div style="width: 45px; height: 45px; border-radius: 50%; background: var(--grad-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Sections wrapper -->
+            <div id="dashboard-section" class="tab-section">
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-plane-departure"></i></div>
+                        <div class="stat-info">
+                            <h3>Total Bookings</h3>
+                            <p id="stat-total">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i class="fa-solid fa-check-double"></i></div>
+                        <div class="stat-info">
+                            <h3>Confirmed</h3>
+                            <p id="stat-confirmed">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <div class="stat-info">
+                            <h3>Pending Review</h3>
+                            <p id="stat-pending">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.1);"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="stat-info">
+                            <h3>Est. Revenue</h3>
+                            <p id="stat-revenue">$0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Recent Booking Requests</h2>
+                        <button class="clear-btn" onclick="clearData()"><i class="fa-solid fa-trash-can mr-2"></i> Clear Data</button>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Date Submitted</th>
+                                <th>Client Name</th>
+                                <th>Destination</th>
+                                <th>Travel Date</th>
+                                <th>Est. Value</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookings-tbody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Wallet Manager -->
+            <div id="wallet-section" class="tab-section table-container" style="display:none;">
+                <div class="table-header">
+                    <h2>Issue Chamunda Cash</h2>
+                    <button class="clear-btn" style="background:#10b981; color:#fff; border:none;" onclick="issueWalletFunds()"><i class="fa-solid fa-plus mr-2"></i> Issue Funds</button>
+                </div>
+                <p style="color:#94a3b8;">Manually credit USD to the test user's wallet for refunds or rewards.</p>
+                <div style="margin-top: 30px; font-size: 1.5rem;">Current Test User Balance: <strong id="admin-wallet-display" style="color:var(--clr-luxury-gold);">$0</strong></div>
+            </div>
+
+            <!-- Promo Codes -->
+            <div id="promos-section" class="tab-section table-container" style="display:none;">
+                <div class="table-header">
+                    <h2>Promo Codes Engine</h2>
+                    <button class="clear-btn" style="background:var(--clr-luxury-gold); color:#000; border:none;" onclick="createPromo()"><i class="fa-solid fa-tag mr-2"></i> Create Promo</button>
+                </div>
+                <table class="admin-table">
+                    <thead><tr><th>Code</th><th>Discount</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="promos-tbody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Support Tickets -->
+            <div id="support-section" class="tab-section table-container" style="display:none;">
+                <div class="table-header">
+                    <h2>Support Ticket Desk</h2>
+                </div>
+                <table class="admin-table">
+                    <thead><tr><th>Ticket ID</th><th>Issue Description</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="admin-support-tbody">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Admin Logic -->
+    <script src="admin.js"></script>
+    <script>
+        function switchAdminTab(tabId, el) {
+            document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
+            el.classList.add('active');
+            document.querySelectorAll('.tab-section').forEach(sec => sec.style.display = 'none');
+            document.getElementById(tabId + '-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

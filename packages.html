@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages | Chamunda Tours & Travels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { height: 50vh; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; padding-top: var(--nav-h); overflow: hidden; }
+        .page-hero-bg { position: absolute; inset: 0; z-index: -1; }
+        .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-overlay { position: absolute; inset: 0; background: rgba(7, 17, 32, 0.7); }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; text-align: center; position: relative; z-index: 2; margin-top: 40px; }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container"><div class="scroll-progress" id="scroll-progress"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link active">Packages</a></li>
+                    <li class="dropdown-trigger">
+                        <a href="experiences.html" class="nav-link">Experiences <i class="fa-solid fa-chevron-down text-sm"></i></a>
+                        <ul class="dropdown-menu glassmorphism">
+                            <li><a href="experiences.html#honeymoon">Honeymoon</a></li>
+                            <li><a href="experiences.html#adventure">Adventure</a></li>
+                            <li><a href="experiences.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle ripple" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="assets/images/maldives.png" alt="Packages">
+            <div class="page-hero-overlay"></div>
+        </div>
+        <h1 class="page-title reveal fade-up">Curated Luxury Packages</h1>
+    </section>
+
+    <!-- Premium Tour Packages Section -->
+    <section class="packages section bg-main" id="packages">
+        <div class="container">
+            <div class="section-header text-center reveal fade-up">
+                <h2 class="section-title">Signature Tour Packages</h2>
+                <p class="section-subtitle">Curated itineraries designed for the ultimate luxury traveler.</p>
+            </div>
+            
+            <div class="filter-tabs reveal fade-up">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="domestic">Domestic</button>
+                <button class="filter-tab" data-filter="international">International</button>
+                <button class="filter-tab" data-filter="honeymoon">Honeymoon</button>
+                <button class="filter-tab" data-filter="luxury">Luxury</button>
+            </div>
+
+            <div class="packages-grid">
+                <!-- Package 1 -->
+                <div class="pkg-card tilt-effect reveal fade-up" data-category="domestic luxury">
+                    <div class="pkg-img">
+                        <img src="assets/images/rajasthan.png" alt="Rajasthan Royal" loading="lazy">
+                        <div class="pkg-badge discount">15% OFF</div>
+                        <div class="pkg-badge duration"><i class="fa-regular fa-clock"></i> 7 Days</div>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span>(128 Reviews)</span>
+                        </div>
+                        <h3 class="pkg-title">Royal Rajasthan Heritage Tour</h3>
+                        <p class="pkg-capacity"><i class="fa-solid fa-user-group"></i> Up to 4 Travelers</p>
+                        <ul class="pkg-highlights">
+                            <li><i class="fa-solid fa-check"></i> 5-Star Palace Stay</li>
+                            <li><i class="fa-solid fa-check"></i> Private Chauffeur</li>
+                            <li><i class="fa-solid fa-check"></i> Desert Safari</li>
+                        </ul>
+                    </div>
+                    <div class="pkg-footer">
+                        <div class="pkg-price">
+                            <span class="old">₹65,000</span>
+                            <span class="new">₹55,250</span>
+                        </div>
+                        <a href="book-package.html?pkg=rajasthan" class="btn btn-primary ripple">Book Package</a>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="pkg-card tilt-effect reveal fade-up" data-category="international honeymoon" style="animation-delay: 0.1s">
+                    <div class="pkg-img">
+                        <img src="assets/images/maldives.png" alt="Maldives Honeymoon" loading="lazy">
+                        <div class="pkg-badge category">Honeymoon</div>
+                        <div class="pkg-badge duration"><i class="fa-regular fa-clock"></i> 5 Days</div>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span>(342 Reviews)</span>
+                        </div>
+                        <h3 class="pkg-title">Maldives Overwater Retreat</h3>
+                        <p class="pkg-capacity"><i class="fa-solid fa-user-group"></i> Couple Only</p>
+                        <ul class="pkg-highlights">
+                            <li><i class="fa-solid fa-check"></i> Private Infinity Pool</li>
+                            <li><i class="fa-solid fa-check"></i> Seaplane Transfer</li>
+                            <li><i class="fa-solid fa-check"></i> Candlelight Dinner</li>
+                        </ul>
+                    </div>
+                    <div class="pkg-footer">
+                        <div class="pkg-price">
+                            <span class="new">₹1,20,000</span>
+                        </div>
+                        <a href="book-package.html?pkg=maldives" class="btn btn-primary ripple">Book Package</a>
+                    </div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="pkg-card tilt-effect reveal fade-up" data-category="international luxury" style="animation-delay: 0.2s">
+                    <div class="pkg-img">
+                        <img src="assets/images/singapore.png" alt="Singapore City" loading="lazy">
+                        <div class="pkg-badge duration"><i class="fa-regular fa-clock"></i> 4 Days</div>
+                    </div>
+                    <div class="pkg-body">
+                        <div class="pkg-rating">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            <span>(89 Reviews)</span>
+                        </div>
+                        <h3 class="pkg-title">Singapore Luxury Escapade</h3>
+                        <p class="pkg-capacity"><i class="fa-solid fa-user-group"></i> Up to 6 Travelers</p>
+                        <ul class="pkg-highlights">
+                            <li><i class="fa-solid fa-check"></i> Marina Bay Sands Stay</li>
+                            <li><i class="fa-solid fa-check"></i> Universal Studios VIP</li>
+                        </ul>
+                    </div>
+                    <div class="pkg-footer">
+                        <div class="pkg-price">
+                            <span class="new">₹85,000</span>
+                        </div>
+                        <a href="book-package.html?pkg=singapore" class="btn btn-primary ripple">Book Package</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Deals Section -->
+    <section class="deals section bg-alt">
+        <div class="container">
+            <div class="section-header text-center reveal fade-up">
+                <h2 class="section-title">Flash Sales & Exclusives</h2>
+            </div>
+            <div class="deals-container">
+                <div class="deal-banner reveal slide-left">
+                    <img src="assets/images/goa.png" alt="Goa Deal" class="deal-bg">
+                    <div class="deal-overlay gradient-overlay"></div>
+                    <div class="deal-content glassmorphism">
+                        <div class="deal-badge blink">Limited Time Offer</div>
+                        <h2>Goa Ultra-Luxury Beach Resort</h2>
+                        <p>Experience the ultimate beach getaway with exclusive access to private sands and premium spa treatments.</p>
+                        <div class="deal-pricing">
+                            <span class="deal-old">₹45,000</span>
+                            <span class="deal-new">₹29,999</span>
+                        </div>
+                        <div class="timer" data-deadline="2026-12-31T23:59:59">
+                            <div class="time-block">
+                                <span class="days">00</span><small>Days</small>
+                            </div>
+                            <div class="time-block">
+                                <span class="hours">00</span><small>Hours</small>
+                            </div>
+                            <div class="time-block">
+                                <span class="mins">00</span><small>Mins</small>
+                            </div>
+                            <div class="time-block">
+                                <span class="secs">00</span><small>Secs</small>
+                            </div>
+                        </div>
+                        <a href="offer.html" class="btn btn-primary btn-lg ripple w-100">Claim Offer Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand col-span-2">
+                        <a href="index.html" class="logo mb-4 inline-block">
+                            <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+                        </a>
+                        <p class="text-gray-400 max-w-sm mb-6">Elevating travel to an art form. We curate exceptional, high-end travel experiences for discerning global citizens.</p>
+                        <div class="social-links-footer">
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Travel Blog</a></li>
+                            <li><a href="press-media.html">Press & Media</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Destinations</h4>
+                        <ul>
+                            <li><a href="europe-tours.html">Europe Tours</a></li>
+                            <li><a href="asia-escapes.html">Asia Escapes</a></li>
+                            <li><a href="indian-heritage.html">Indian Heritage</a></li>
+                            <li><a href="island-retreats.html">Island Retreats</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter col-span-2">
+                        <h4 class="footer-title">The Luxury Edit</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to our newsletter for exclusive travel insights and secret VIP deals.</p>
+                        <form class="newsletter-form glassmorphism" id="newsletter">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="ripple"><i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        <div class="app-links mt-6">
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-apple text-2xl"></i> <div><small>Download on</small><br>App Store</div></a>
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-google-play text-2xl"></i> <div><small>Get it on</small><br>Google Play</div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 Chamunda Tours & Travels. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle ripple" id="chat-toggle"><i class="fa-solid fa-comment-dots"></i></button>
+        <div class="chat-window glassmorphism-heavy" id="chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="chat-avatar"><i class="fa-solid fa-user-tie"></i><div class="online-dot"></div></div>
+                    <div><h4 class="m-0 text-sm">Concierge Team</h4></div>
+                </div>
+                <button class="chat-close" id="chat-close"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg-bubble bot">Hello! Ready to plan your dream vacation? Let me know how I can assist you today.</div>
+            </div>
+            <div class="chat-footer">
+                <div class="typing-indicator" id="chat-typing"><span></span><span></span><span></span></div>
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+

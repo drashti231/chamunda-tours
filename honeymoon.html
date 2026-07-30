@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Dream Honeymoon | Chamunda Tours & Travels</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { height: 40vh; min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; padding-top: var(--nav-h); overflow: hidden; background: #0f172a; }
+        .page-hero-bg { position: absolute; inset: 0; z-index: -1; }
+        .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-overlay { position: absolute; inset: 0; background: rgba(7, 17, 32, 0.5); }
+        .page-title { font-size: clamp(2.5rem, 5vw, 4rem); color: #fff; text-align: center; position: relative; z-index: 2; margin-top: 20px; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .booking-section { padding: 80px 0; background: var(--bg-color); }
+        .booking-container { max-width: 900px; margin: 0 auto; background: var(--surface-color); padding: 50px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: 8px; font-weight: 500; color: var(--text-dark); font-family: var(--font-secondary); }
+        .form-group input, .form-group select, .form-group textarea { 
+            padding: 15px; 
+            border: 1px solid rgba(0,0,0,0.1); 
+            border-radius: 10px; 
+            font-family: var(--font-primary); 
+            background: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        
+        .submit-btn-wrapper { text-align: center; margin-top: 40px; }
+        .submit-btn-wrapper .btn { font-size: 1.1rem; padding: 15px 50px; width: 100%; max-width: 300px; }
+        
+        [data-theme="dark"] .booking-container { background: var(--glass-bg); box-shadow: 0 15px 40px rgba(0,0,0,0.3); border: 1px solid var(--glass-border); }
+        [data-theme="dark"] .form-group label { color: #fff; }
+        [data-theme="dark"] .form-group input, [data-theme="dark"] .form-group select, [data-theme="dark"] .form-group textarea { background: rgba(0,0,0,0.2); color: #fff; border-color: rgba(255,255,255,0.1); }
+        
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; gap: 15px; }
+            .booking-container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="loading-text" id="loading-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress-container"><div class="scroll-progress" id="scroll-progress"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li class="dropdown-trigger">
+                        <a href="experiences.html" class="nav-link">Experiences <i class="fa-solid fa-chevron-down text-sm"></i></a>
+                        <ul class="dropdown-menu glassmorphism">
+                            <li><a href="experiences.html#honeymoon">Honeymoon</a></li>
+                            <li><a href="experiences.html#adventure">Adventure</a></li>
+                            <li><a href="experiences.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li><li><a href="user.html" class="nav-link" style="color: var(--clr-luxury-gold);" title="My Account"><i class="fa-solid fa-user"></i></a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="theme-toggle ripple" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+                    
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="assets/images/honeymoon.png" alt="Romantic Honeymoon">
+            <div class="page-hero-overlay"></div>
+        </div>
+        <h1 class="page-title reveal fade-up">Plan Your Dream Honeymoon</h1>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section section">
+        <div class="container">
+            <div class="section-header text-center reveal fade-up">
+                <h2 class="section-title">Romantic Escape Inquiry</h2>
+                <p class="section-subtitle">Celebrate your love with a perfectly curated, once-in-a-lifetime journey. Tell us about your vision, and our romance specialists will craft the magic.</p>
+            </div>
+            
+            <div class="booking-container reveal fade-up">
+                <form action="#" method="POST" id="romance-form">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="partner1">Your Name</label>
+                            <input type="text" id="partner1" required placeholder="Partner 1 Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="partner2">Partner's Name</label>
+                            <input type="text" id="partner2" required placeholder="Partner 2 Name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Contact Email</label>
+                            <input type="email" id="email" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required placeholder="+1 (555) 000-0000">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="wedding-date">Wedding Date</label>
+                            <input type="date" id="wedding-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="travel-month">Ideal Travel Month</label>
+                            <input type="month" id="travel-month" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vibe">Preferred Honeymoon Vibe</label>
+                            <select id="vibe" required>
+                                <option value="" disabled selected>Select an experience...</option>
+                                <option value="tropical">Tropical Beach & Overwater Villa</option>
+                                <option value="adventure">Thrilling Safari & Adventure</option>
+                                <option value="cultural">European Romance & Culture</option>
+                                <option value="winter">Winter Wonderland & Ski</option>
+                                <option value="mix">A Mix of Everything</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget (USD)</label>
+                            <select id="budget" required>
+                                <option value="10k-20k">$10,000 - $20,000</option>
+                                <option value="20k-40k">$20,000 - $40,000</option>
+                                <option value="40k-75k">$40,000 - $75,000</option>
+                                <option value="75k+">$75,000+</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="special-requests">Dream Honeymoon Details & Special Requests</label>
+                        <textarea id="special-requests" placeholder="Tell us what would make this trip unforgettable. Private dinners on the beach? Couples spa treatments? Helicopter tours? We arrange it all."></textarea>
+                    </div>
+                    
+                    <div class="submit-btn-wrapper">
+                        <button type="submit" class="btn btn-primary ripple">Plan Our Romance <i class="fa-solid fa-heart ml-2"></i></button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    
+                    <div class="footer-brand col-span-2">
+                        <a href="index.html" class="logo mb-4 inline-block">
+                            <i class="fa-solid fa-earth-asia"></i> Chamunda<span>Tours</span>
+                        </a>
+                        <p class="text-gray-400 max-w-sm mb-6">Elevating travel to an art form. We curate exceptional, high-end travel experiences for discerning global citizens.</p>
+                        <div class="social-links-footer">
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-btn ripple"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="blog.html">Travel Blog</a></li>
+                            <li><a href="press-media.html">Press & Media</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-title">Destinations</h4>
+                        <ul>
+                            <li><a href="europe-tours.html">Europe Tours</a></li>
+                            <li><a href="asia-escapes.html">Asia Escapes</a></li>
+                            <li><a href="indian-heritage.html">Indian Heritage</a></li>
+                            <li><a href="island-retreats.html">Island Retreats</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-newsletter col-span-2">
+                        <h4 class="footer-title">The Luxury Edit</h4>
+                        <p class="text-gray-400 mb-4">Subscribe to our newsletter for exclusive travel insights and secret VIP deals.</p>
+                        <form class="newsletter-form glassmorphism" id="newsletter">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit" class="ripple"><i class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                        <div class="app-links mt-6">
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-apple text-2xl"></i> <div><small>Download on</small><br>App Store</div></a>
+                            <a href="#" class="app-badge glassmorphism ripple"><i class="fa-brands fa-google-play text-2xl"></i> <div><small>Get it on</small><br>Google Play</div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p>&copy; 2026 Chamunda Tours & Travels. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle ripple" id="chat-toggle"><i class="fa-solid fa-comment-dots"></i></button>
+        <div class="chat-window glassmorphism-heavy" id="chat-window">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="chat-avatar"><i class="fa-solid fa-user-tie"></i><div class="online-dot"></div></div>
+                    <div><h4 class="m-0 text-sm">Concierge Team</h4></div>
+                </div>
+                <button class="chat-close" id="chat-close"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="msg-bubble bot">Hello! Ready to plan your dream vacation? Let me know how I can assist you today.</div>
+            </div>
+            <div class="chat-footer">
+                <div class="typing-indicator" id="chat-typing"><span></span><span></span><span></span></div>
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('romance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = 'Planning... <i class="fa-solid fa-spinner fa-spin ml-2"></i>';
+            btn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                window.location.href = 'book.html?dest=Honeymoon%20Package';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
